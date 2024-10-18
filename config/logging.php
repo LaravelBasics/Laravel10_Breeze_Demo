@@ -8,7 +8,6 @@ use Monolog\Formatter\JsonFormatter;
 use App\Logging\Appliers\CloudTraceProcessorApplier;
 use App\Logging\Appliers\WebProcessorApplier;
 
-
 return [
 
     /*
