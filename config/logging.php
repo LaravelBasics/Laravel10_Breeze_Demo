@@ -4,6 +4,9 @@ use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
 use Monolog\Processor\PsrLogMessageProcessor;
+use Monolog\Formatter\JsonFormatter;
+use App\Logging\Appliers\CloudTraceProcessorApplier;
+use App\Logging\Appliers\WebProcessorApplier;
 
 return [
 
@@ -54,8 +57,14 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
-            'ignore_exceptions' => false,
+            // 'channels' => ['single'],
+            'channels' => ['stderr'],
+            // 'ignore_exceptions' => false,
+            'ignore_exceptions' => true,
+            // 'tap' => [
+            //     CloudTraceProcessorApplier::class,
+            //     WebProcessorApplier::class,
+            // ],
         ],
 
         'single' => [
@@ -96,9 +105,11 @@ return [
 
         'stderr' => [
             'driver' => 'monolog',
-            'level' => env('LOG_LEVEL', 'debug'),
+            'level' => env('LOG_STDERR_LEVEL'),
+            // 'level' => env('LOG_LEVEL', 'debug'),
             'handler' => StreamHandler::class,
-            'formatter' => env('LOG_STDERR_FORMATTER'),
+            // 'formatter' => env('LOG_STDERR_FORMATTER'),
+            'formatter' => env('LOG_STDERR_FORMATTER', JsonFormatter::class),
             'with' => [
                 'stream' => 'php://stderr',
             ],
@@ -124,7 +135,8 @@ return [
         ],
 
         'emergency' => [
-            'path' => storage_path('logs/laravel.log'),
+            // 'path' => storage_path('logs/laravel.log'),
+            'path' => 'php://stderr',
         ],
     ],
 
