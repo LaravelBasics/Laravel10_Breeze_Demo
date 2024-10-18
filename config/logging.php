@@ -8,6 +8,7 @@ use Monolog\Formatter\JsonFormatter;
 use App\Logging\Appliers\CloudTraceProcessorApplier;
 use App\Logging\Appliers\WebProcessorApplier;
 
+
 return [
 
     /*
@@ -61,10 +62,10 @@ return [
             'channels' => ['stderr'],
             // 'ignore_exceptions' => false,
             'ignore_exceptions' => true,
-            // 'tap' => [
-            //     CloudTraceProcessorApplier::class,
-            //     WebProcessorApplier::class,
-            // ],
+            'tap' => [
+                CloudTraceProcessorApplier::class,
+                WebProcessorApplier::class,
+            ],
         ],
 
         'single' => [
