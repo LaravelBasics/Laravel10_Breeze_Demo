@@ -5,6 +5,7 @@ namespace App\Logging\Appliers;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Log\Logger;
+use Monolog\LogRecord;
 
 class CloudTraceProcessorApplier
 {
@@ -19,7 +20,7 @@ class CloudTraceProcessorApplier
 
     public function __invoke(Logger $logger)
     {
-        $logger->pushProcessor(function (array $record) {
+        $logger->pushProcessor(function (LogRecord $record) {
             $trace = explode('/', $this->request->header('X-Cloud-Trace-Context'))[0];
 
             if ($this->project !== null && $trace !== '') {
