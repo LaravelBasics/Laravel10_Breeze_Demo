@@ -4,7 +4,10 @@
     ],
     "functions": {
         "api/index.php": {
-            "runtime": "vercel-php@0.6.2"
+            "runtime": "vercel-php@0.6.2",
+            "config": {
+                "includeFiles": ["libssl.so.10"]
+            }
         }
     },
     "routes": [
