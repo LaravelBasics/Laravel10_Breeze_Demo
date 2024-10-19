@@ -4,10 +4,7 @@
     ],
     "functions": {
         "api/index.php": {
-            "runtime": "vercel-php@0.6.2",
-            "config": {
-                "includeFiles": ["libssl.so.10"]
-            }
+            "runtime": "vercel-php@0.6.2"
         }
     },
     "routes": [
@@ -33,8 +30,5 @@
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie",
         "VIEW_COMPILED_PATH": "/tmp"
-    },
-    "config": {
-        "includeFiles": ["libssl.so.10"]
     }
 }
