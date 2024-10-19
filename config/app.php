@@ -170,6 +170,7 @@ return [
         // NunoMaduro\Collision\Adapters\Laravel\CollisionServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        CollisionServiceProvider::class,
     ])->toArray(),
 
     /*
